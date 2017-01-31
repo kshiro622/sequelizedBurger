@@ -1,27 +1,26 @@
-// Dependencies
-var orm = require('../config/orm');
+module.exports = function(sequelize, DataTypes) {
+    var Burgers = sequelize.define('burgers', {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+            allowNull: false
+        },
+        burger_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        devoured: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: 0
+        },
+        date: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        }
+    }, {
+        timestamps: false
+    });
 
-// Define burger object
-var burger = {
-    // select all burgers from the table
-    selectAll: function(cb) {
-        orm.selectAll("burgers", function(res) {
-            cb(res);
-        });
-    },
-    // insert a burger into table
-    insertOne: function(value, cb) {
-        orm.insertOne("burgers", value, function(res) {
-            cb(res);
-        });
-    },
-    // update burger's devoured status in table
-    updateOne: function(id, cb) {
-        orm.updateOne("burgers", id, function(res) {
-            cb(res);
-        });
-    }
+    return Burgers;
 };
-
-// Export the database functions for the controller
-module.exports = burger;
