@@ -14,7 +14,7 @@
   		{{#each burgers}}
   			{{#unless this.devoured}}
 	  			<p>
-	  				<form class="devour-form" action="/{{this.id}}?_method=PUT" method="POST">
+	  				<form class="devour-form" action="/api/{{this.id}}?_method=PUT" method="POST">
           		<input type="hidden" name="id" value={{this.id}}>
           		<button class="btn btn-default devour-button" type="submit">Devour It!</button>
           	</form> 
@@ -25,7 +25,7 @@
 	</div>
 
   <div class="col-md-4" id="add-burger">
-	  <form class="add-burger" action="/" method="POST">
+	  <form class="add-burger" action="/api/burgers" method="POST">
       <div class="form-group">
         <input type="text" name="burger_name" class="form-control" id="burger-input" placeholder="Enter burger name here.">
           <small id="instructions" class="form-text text-muted">Enter a burger you want to eat and click the "Submit" button.</small>
